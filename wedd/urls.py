@@ -3,6 +3,6 @@ from .import views
 
 urlpatterns = [
     path('',views.home,name='home'),
-    path("profile/", profile, name="profile"),
+    # path("profile/", profile, name="profile"),
 ]
 
