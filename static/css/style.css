@@ -5,6 +5,7 @@
 body{
     background: url(../images/pexels-d-m-12951710.jpg)
     no-repeat center center fixed  ;
+    height: 100vh;
     background-size: cover;
     background-position: center;
     font-family: catamaran;
@@ -58,4 +59,8 @@ h1,p{
 
 .fa-linkedin-square:hover{
      color: #00adb5;
+}
+
+.bg-dark text-light text-center py-3{
+    flex-shrink: 0;;
 }

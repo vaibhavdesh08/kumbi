@@ -9,9 +9,10 @@
     <!-- Link to Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Link to custom CSS (style.css) -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    {% load static %} 
+<link rel="stylesheet" href="{% static '../static/css/style.css' %}">
       <!-- Link add -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -41,7 +42,7 @@
     </nav>
 
 <!-- Background image -->
-<div
+<!-- <div
    class="bg-image"
    style="
         background-image: url(../static/images/pexels-d-m-12951710.jpg);
@@ -50,29 +51,12 @@
         background-size: cover;
         background-position: center;
         "
+    <a href="#" class="btn btn-primary btn-lg">Get Started</a>
 
-<div class="container center">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>
-                <span class="fa-stack fa-lg">
-                   <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
-                    <a href="#"><i class="fa fa-twitter fa-stack-1x" aria-hidden="true"></i></a>
-                </span>
-                <span class="fa-stack fa-lg">
-                 <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
-                <a href="#"><i class="fa fa-linkedin-square fa-stack-1x" aria-hidden="true"></i></a>
-                </span>
-            </h2>
-            <h1>Tech Query Lab Is coming soon.</h1>
-            <p>Waiting is not easy but just try it this time</p>
-            <button class="btn btn-success btn-lg">
-            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-            <br>Click Me </button>
         </div>
     </div>
 </div>
-</div>
+</div> -->
 <!-- no-repeat center center fixed -->
 <!-- Background image -->
 
@@ -97,7 +81,8 @@
     </div> -->
 
     <!-- Footer -->
-    <footer class="bg-dark text-light text-center py-3">
+
+    <footer class="bg-dark text-light text-center py-3" >
         &copy; 2023 Matrimony Site<br>
         by Vaibhav Deshmukh
     </footer>
