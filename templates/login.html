@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Matrimony Registration</title>
+  <title>Matrimony Login</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
@@ -14,7 +14,7 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
     }
-    .registration-form {
+    .login-form {
       background-color: rgba(255, 255, 255, 0.9);
       padding: 20px;
       border: 2px solid #ccc;
@@ -27,13 +27,9 @@
   {% include 'navbar.html' %}
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6 registration-form">
-        <h2 class="text-center mb-4">Matrimony Registration</h2>
-        <form method="post" action='{% url 'register' %}'>
-          <div class="form-group">
-            <label for="fullname">Full Name:</label>
-            <input type="text" class="form-control" id="fullname" placeholder="Enter your full name" required>
-          </div>
+      <div class="col-md-4 login-form">
+        <h2 class="text-center mb-4">Matrimony Login</h2>
+        <form>
           <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
@@ -42,25 +38,9 @@
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
           </div>
-          <div class="form-group">
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-          </div>
-          <div class="form-group">
-            <label for="dob">Date of Birth:</label>
-            <input type="date" class="form-control" id="dob" required>
-          </div>
-          <div class="form-group">
-            <label for="gender">Gender:</label>
-            <select class="form-control" id="gender" required>
-              <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Register</button>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
+        <p class="mt-3 text-center">Don't have an account? <a href="register">Register</a></p>
       </div>
     </div>
   </div>
