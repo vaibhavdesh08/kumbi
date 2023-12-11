@@ -7,7 +7,7 @@ class UserProfile(models.Model):
         ('other', 'Other'),
     )
 
-    full_name = models.CharField(max_length=100)
+    fullname = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)  # Note: In a production environment, use a hashed password field
     date_of_birth = models.DateField()

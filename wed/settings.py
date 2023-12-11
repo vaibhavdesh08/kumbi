@@ -26,6 +26,9 @@ SECRET_KEY = 'django-insecure-aeyo5d9h8u=t7_3rj7&6o6ev_cqgmkdw9xs2ys0ly7+ugja&=k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
+
 ALLOWED_HOSTS = []
 
 
@@ -77,13 +80,48 @@ WSGI_APPLICATION = 'wed.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+# import urllib.parse
+
+# # Replace 'your_username' and 'your_password' with your actual MongoDB Atlas credentials
+# username = 'wandekar'
+# password = 'gima@142'
+
+# # Encode the username and password
+# encoded_username = urllib.parse.quote_plus(username)
+# encoded_password = urllib.parse.quote_plus(password)
+
+# # Use the encoded username and password in your MongoDB connection URI
+# connection_uri = f'mongodb+srv://{encoded_username}:{encoded_password}@your_cluster_host/dbname'
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'wandekar',
+#         'CLIENT': {
+#             'host': 'connection_uri',
+#             'username': 'wandekar',
+#             'password': 'gima@142',
+#             'authSource': 'admin',
+#             'authMechanism': 'SCRAM-SHA-1',
+#         }
+#     }
+# }
+
+# RENDER LIVE DATABSE
+
+import dj_database_url
+
+DATABASES = {
+    'default' : dj_database_url.parse('postgres://wandekar:0niAH6vDHUAb8xRqck67rXcij159P143@dpg-clrer7ae9h4c73av89q0-a.oregon-postgres.render.com/wandekar')
+ 
+}
 # settings.py
 
 # Email configuration using Gmail SMTP

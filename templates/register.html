@@ -25,11 +25,13 @@
 </head>
 <body>
   {% include 'navbar.html' %}
+  {% csrf_token %}
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 registration-form">
         <h2 class="text-center mb-4">Matrimony Registration</h2>
-        <form method="post" action='{% url 'register' %}'>
+        <form method="post" action="/register">
+          {% csrf_token %}
           <div class="form-group">
             <label for="fullname">Full Name:</label>
             <input type="text" class="form-control" id="fullname" placeholder="Enter your full name" required>
