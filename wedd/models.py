@@ -1,13 +1,14 @@
 from django.db import models
 
-class UserProfile(models.Model):
+class wandekar(models.Model):
     GENDER_CHOICES = (
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other'),
     )
 
-    fullname = models.CharField(max_length=100)
+    # full_name = models.CharField(max_length=100)
+    user_name = models.CharField(max_length=120)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)  # Note: In a production environment, use a hashed password field
     date_of_birth = models.DateField()
@@ -17,4 +18,4 @@ class UserProfile(models.Model):
     # You might want to add additional fields for verification purposes (e.g., is_verified, verification_code, etc.)
 
     def __str__(self):
-        return self.full_name
+        return self.user_name
