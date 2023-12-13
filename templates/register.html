@@ -30,7 +30,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6 registration-form">
         <h2 class="text-center mb-4">Matrimony Registration</h2>
-        <form method="post" action="/register">
+        <form method="post" action="{% url 'register' %}">
           {% csrf_token %}
           <div class="form-group">
             <label for="fullname">Full Name:</label>

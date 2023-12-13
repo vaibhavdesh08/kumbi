@@ -11,8 +11,8 @@ def generate_verification_code():
     return code
 
 # Function to send verification email
-def send_verification_email(user_email, verification_code):
+def send_verification_email(email, verification_code):
     verification_link = f'https://yourwebsite.com/verify?code={verification_code}'  # Your verification link
     subject = 'Matrimony Website Email Verification'
     message = f'Hello,\n\nYour verification code is: {verification_code}\n\nPlease click the following link to verify your email: {verification_link}'
-    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user_email])
+    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email])

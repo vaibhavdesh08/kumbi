@@ -58,21 +58,15 @@ from .utils import send_verification_email, generate_verification_code
 
 def register(request):
     if request.method == 'POST':
-        # Process signup form data
-        # full_name = request.POST['full_name']
-        user_name = request.POST['user_name']
-        email    = request.POST['email']
-        password = request.POST['password']
-        dob = request.POST['dob']
-        gender = request.POST['gender']
-
-
-        # do all sanitization
-        Wandekar = wandekar(user_name=user_name ,email=email, password=password, dob=dob,
-                              gender=gender)
-        Wandekar.save()
-        messages.success(request, 'Add data Sucessful!')
-    return render(request, 'register.html')
+        form = wandekarForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the user to the database
+            # You can add login logic here if needed
+            return redirect('login')  # Redirect to home page after successful registration
+    else:
+        form = wandekarForm()
+    
+    return render(request, 'register.html', {'form': form})
     #     # Send verification email to the user
 
     #     user_email = request.GET['email']  # User's email address
