@@ -7,13 +7,26 @@ from .models import wandekar
 class wandekarForm(ModelForm):
     class Meta:
         model = wandekar
-        fields = ('user_name','email','password','date_of_birth','gender')
+        fields = ('full_name','email','password','confirmPassword','dob','gender')
 
         labels = {
-            'user_name' : 'fullname',
-            'email' :'email',
-            'password' : 'password',
-            'date_of_birth' :'date_of_birth',
-            'gender' : 'gender',
+            'full_name' : '',
+            'email' :'',
+            'password' : '',
+            'confirmPassword' : '',
+            'dob' :'',
+            'gender' : 'Gender',
             
+        }
+
+        widgets = {
+            
+            # 'group' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Group'}),
+            # 'group' : forms.ChoiceField( choices=[group_choices], required=False),
+            'full_name' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Enter your full name'}),
+            # 'site' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Site'}),
+            'email' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'Enter your email'}),
+            'password' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'Enter your password'}),
+            'confirmPassword' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'Confirm your password'}),
+            'dob' : forms.DateInput(attrs={'class' : 'form-control','placeholder' : 'Date of Birth'}),
         }

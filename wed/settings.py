@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'wed.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default' : dj_database_url.parse('postgres://wandekar:0niAH6vDHUAb8xRqck67rXcij159P143@dpg-clrer7ae9h4c73av89q0-a.oregon-postgres.render.com/wandekar')
+    'default' : dj_database_url.parse('postgres://wandekar:gryCjo3DEbe3uQkpKWDypXfF3jsNHj7a@dpg-cmginu0cmk4c73er2190-a.oregon-postgres.render.com/wandekar_u7za')
  
 }
 # settings.py

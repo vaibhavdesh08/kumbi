@@ -10,6 +10,7 @@ from django.template import loader
 from django.views.generic import  ListView
 from django.template import loader
 from django.urls import reverse
+from .forms import wandekarForm
 
 # Create your views here.
 
@@ -48,25 +49,28 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
-@login_required(login_url='login')
-def profile(request):
-    return render(request, 'profile.html')
+# @login_required(login_url='login')
+# def profile(request):
+#     return render(request, 'profile.html')
 # views.py
 
 # from django.shortcuts import render
 from .utils import send_verification_email, generate_verification_code
 
 def register(request):
+    submitted = False
     if request.method == 'POST':
         form = wandekarForm(request.POST)
         if form.is_valid():
             form.save()  # Save the user to the database
+            messages.success(request,'User Register')
             # You can add login logic here if needed
-            return redirect('login')  # Redirect to home page after successful registration
+            return HttpResponseRedirect('./register?submitted=True')  # Redirect to home page after successful registration
     else:
-        form = wandekarForm()
-    
-    return render(request, 'register.html', {'form': form})
+        form = wandekarForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'register.html', {'form': form,'submitted':submitted})
     #     # Send verification email to the user
 
     #     user_email = request.GET['email']  # User's email address
