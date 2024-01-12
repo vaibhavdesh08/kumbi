@@ -1,12 +1,12 @@
 from django import forms
 from django.forms import ModelForm
-from .models import wandekar
+from .models import kumbi
 
 #Create a iplist form
 
-class wandekarForm(ModelForm):
+class kumbiForm(ModelForm):
     class Meta:
-        model = wandekar
+        model = kumbi
         fields = ('full_name','email','password','confirmPassword','dob','gender')
 
         labels = {

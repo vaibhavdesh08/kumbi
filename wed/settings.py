@@ -119,7 +119,7 @@ WSGI_APPLICATION = 'wed.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default' : dj_database_url.parse('postgres://wandekar:gryCjo3DEbe3uQkpKWDypXfF3jsNHj7a@dpg-cmginu0cmk4c73er2190-a.oregon-postgres.render.com/wandekar_u7za')
+    'default' : dj_database_url.parse('postgres://kumbi:slV0Wxsr0NDZ7NaNkvCoS9BPFUC0XLYx@dpg-cmgj7egl5elc73fugn6g-a.singapore-postgres.render.com/kumbi')
  
 }
 # settings.py

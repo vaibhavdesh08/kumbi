@@ -1,6 +1,6 @@
 from django.db import models
 
-class wandekar(models.Model):
+class kumbi(models.Model):
     gender_choices = (
         ('male', 'Male'),
         ('female', 'Female'),
