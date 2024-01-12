@@ -3,14 +3,14 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required 
-from .models import wandekar
+from .models import kumbi
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.template import loader
 from django.views.generic import  ListView
 from django.template import loader
 from django.urls import reverse
-from .forms import wandekarForm
+from .forms import kumbiForm
 
 # Create your views here.
 
@@ -60,14 +60,14 @@ from .utils import send_verification_email, generate_verification_code
 def register(request):
     submitted = False
     if request.method == 'POST':
-        form = wandekarForm(request.POST)
+        form = kumbiForm(request.POST)
         if form.is_valid():
             form.save()  # Save the user to the database
             messages.success(request,'User Register')
             # You can add login logic here if needed
             return HttpResponseRedirect('./register?submitted=True')  # Redirect to home page after successful registration
     else:
-        form = wandekarForm
+        form = kumbiForm
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'register.html', {'form': form,'submitted':submitted})
@@ -81,7 +81,8 @@ def register(request):
 
     # return render(request, 'register.html')
 
-
+def profile(request):
+    return render(request,'profile.html')
 # def profile(request):
 #     user = request.user
 
