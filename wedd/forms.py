@@ -25,7 +25,7 @@ class kumbiForm(ModelForm):
             # 'group' : forms.ChoiceField( choices=[group_choices], required=False),
             'full_name' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Enter your full name'}),
             # 'site' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Site'}),
-            'email' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'Enter your email'}),
+            'email' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'email'}),
             'password' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'Enter your password'}),
             'confirmPassword' : forms.TextInput(attrs={'class' : 'form-control' , 'placeholder' : 'Confirm your password'}),
             'dob' : forms.DateInput(attrs={'class' : 'form-control','placeholder' : 'Date of Birth'}),

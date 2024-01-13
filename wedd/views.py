@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect , HttpResponse
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required 
 from .models import kumbi
@@ -11,7 +11,6 @@ from django.views.generic import  ListView
 from django.template import loader
 from django.urls import reverse
 from .forms import kumbiForm
-
 # Create your views here.
 
 def home(request):
@@ -36,26 +35,26 @@ def register(request):
 # def login(request):
 #     return render(request,'login.html')
 
-def login(request):
-    if request.session.has_key('is_logged'):
-        return redirect('profile')
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        user=auth.authenticate(email=email,password=password)
+# def login(request):
+#     if request.session.has_key('is_logged'):
+#         return redirect('profile')
+#     if request.method == 'POST/GET':
+#         email = request.GET['email']
+#         password = request.GET['password']
+#         user=auth.authenticate(email=email,password=password)
 
 
-        if user is not None:
+#         if user is not None:
 
-            auth.login(request, user)
-            request.session['is_logged'] = True
-            return redirect('profile')
-        else:
-            messages.info(request, 'invalid email or password')
-            return redirect('login')
+#             auth.login(request, user)
+#             request.session['is_logged'] = True
+#             return redirect('profile')
+#         else:
+#             messages.info(request, 'invalid email or password')
+#             return redirect('login')
 
-    else:
-        return render(request, 'login.html')
+#     else:
+#         return render(request, 'login.html')
 
 
 def logout(request): 
@@ -111,13 +110,13 @@ def profile(request):
 # from django.contrib import messages
 # from .forms import LoginForm
 
-# def user_login(request):
+# def login(request):
 #     if request.method == 'POST':
-#         form = LoginForm(request.POST)
+#         form = kumbiForm(request.POST)
 #         if form.is_valid():
-#             email = form.cleaned_data['email']
-#             password = form.cleaned_data['password']
-#             user = authenticate(request, email=email, password=password)
+#             email = request.POST['email']
+#             password = request.POST['password']
+#             user = auth.authenticate(request, email=email, password=password)
 
 #             if user is not None:
 #                 login(request, user)
@@ -127,6 +126,30 @@ def profile(request):
 #                 messages.error(request, 'Invalid email or password.')
 
 #     else:
-#         form = LoginForm()
+#         form = kumbiForm()
 
-#     return render(request, 'registration/login.html', {'form': form})
+#     return render(request, 'login.html', {'form': form})
+def login(request):
+    if request.session.has_key('is_logged'):
+        return redirect('profile')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user=auth.authenticate(username=username,password=password)
+
+
+        if user is not None:
+
+            auth.login(request, user)
+            request.session['is_logged'] = True
+            return redirect('profile')
+        else:
+            messages.info(request, 'invalid user name or password')
+            return redirect('login')
+
+    else:
+        return render(request, 'login.html')
+
+def logout(request): 
+    auth.logout(request)
+    return redirect('login')
