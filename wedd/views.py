@@ -55,17 +55,16 @@ def logout(request):
 # views.py
 
 # from django.shortcuts import render
-from .utils import send_verification_email, generate_verification_code
+# from .utils import send_verification_email, generate_verification_code
 
 def register(request):
     submitted = False
-    if request.method == 'POST':
+    if request.method == "POST":
         form = kumbiForm(request.POST)
         if form.is_valid():
             form.save()  # Save the user to the database
             messages.success(request,'User Register')
-            # You can add login logic here if needed
-            return HttpResponseRedirect('./register?submitted=True')  # Redirect to home page after successful registration
+            return HttpResponseRedirect('./regiter?submitted=True')
     else:
         form = kumbiForm
         if 'submitted' in request.GET:
