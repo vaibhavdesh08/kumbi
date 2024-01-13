@@ -17,6 +17,19 @@ from .forms import kumbiForm
 def home(request):
     return render(request,'home.html')
 
+
+def register(request):
+    if request.method == 'POST':
+        form = kumbiForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Redirect to a success page
+    else:
+        form = kumbiForm()
+
+    return render(request, 'register.html', {'form': form})
+
+
 # def register(request):
 #     return render(request,'register.html')
 
@@ -57,19 +70,19 @@ def logout(request):
 # from django.shortcuts import render
 # from .utils import send_verification_email, generate_verification_code
 
-def register(request):
-    submitted = False
-    if request.method == "POST":
-        form = kumbiForm(request.POST)
-        if form.is_valid():
-            form.save()  # Save the user to the database
-            messages.success(request,'User Register')
-            return HttpResponseRedirect('./regiter?submitted=True')
-    else:
-        form = kumbiForm
-        if 'submitted' in request.GET:
-            submitted = True
-    return render(request, 'register.html', {'form': form,'submitted':submitted})
+# def register(request):
+#     submitted = False
+#     if request.method == "POST":
+#         form = kumbiForm(request.POST)
+#         if form.is_valid():
+#             form.save()  # Save the user to the database
+#             messages.success(request,'User Register')
+#             return HttpResponseRedirect('./regiter?submitted=True')
+#     else:
+#         form = kumbiForm
+#         if 'submitted' in request.GET:
+#             submitted = True
+#     return render(request, 'register.html', {'form': form,'submitted':submitted})
     #     # Send verification email to the user
 
     #     user_email = request.GET['email']  # User's email address
@@ -90,3 +103,30 @@ def profile(request):
 #     }
 
 #     return render(request, "profile.html", context)
+
+# views.py
+
+# from django.shortcuts import render, redirect
+# from django.contrib.auth import authenticate, login
+# from django.contrib import messages
+# from .forms import LoginForm
+
+# def user_login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             email = form.cleaned_data['email']
+#             password = form.cleaned_data['password']
+#             user = authenticate(request, email=email, password=password)
+
+#             if user is not None:
+#                 login(request, user)
+#                 messages.success(request, 'Login successful.')
+#                 return redirect('profile')  # Redirect to the profile page
+#             else:
+#                 messages.error(request, 'Invalid email or password.')
+
+#     else:
+#         form = LoginForm()
+
+#     return render(request, 'registration/login.html', {'form': form})
