@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect , HttpResponse
 from django.contrib.auth import logout
 from django.contrib.auth.models import User 
+from django.contrib.auth import authenticate,login
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required 
 from .models import kumbi
@@ -16,17 +17,41 @@ from .forms import kumbiForm
 def home(request):
     return render(request,'home.html')
 
-
 def register(request):
-    if request.method == 'POST':
-        form = kumbiForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')  # Redirect to a success page
-    else:
-        form = kumbiForm()
+    if request.method=='POST':
+        username=request.POST.get('username')
+        email=request.POST.get('email')
+        pass1=request.POST.get('password1')
+        pass2=request.POST.get('password2')
 
-    return render(request, 'register.html', {'form': form})
+        if pass1!=pass2:
+            messages.error(request, 'Your Password and Confirm Password Not Same..!')
+            # return HttpResponse("Your Password and Confirm Password Not Same..!")
+        else:
+            my_user=User.objects.create_user(username,email,pass1)
+            my_user.save()
+            return redirect('login')
+    return render(request,'register.html')
+
+def login(request):
+    if request.method=="POST":
+        email=request.POST.get('email')
+        pass1=request.POST.get('pass')
+        user=authenticate(request,email=email,password=pass1)
+        if user is not None:
+            login(request,user)
+            return redirect('profile')
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = kumbiForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('login')  # Redirect to a success page
+#     else:
+#         form = kumbiForm()
+
+#     return render(request, 'register.html', {'form': form})
 
 
 # def register(request):
@@ -129,26 +154,26 @@ def profile(request):
 #         form = kumbiForm()
 
 #     return render(request, 'login.html', {'form': form})
-def login(request):
-    if request.session.has_key('is_logged'):
-        return redirect('profile')
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user=auth.authenticate(username=username,password=password)
+# def login(request):
+#     if request.session.has_key('is_logged'):
+#         return redirect('profile')
+#     if request.method == 'POST':
+#         email = request.POST['email']
+#         password = request.POST['password']
+#         user=auth.authenticate(email=email,password=password)
 
 
-        if user is not None:
+#         if user is not None:
 
-            auth.login(request, user)
-            request.session['is_logged'] = True
-            return redirect('profile')
-        else:
-            messages.info(request, 'invalid user name or password')
-            return redirect('login')
+#             auth.login(request, user)
+#             request.session['is_logged'] = True
+#             return redirect('profile')
+#         else:
+#             messages.info(request, 'invalid Email or Password')
+#             return redirect('login')
 
-    else:
-        return render(request, 'login.html')
+#     else:
+#         return render(request, 'login.html')
 
 def logout(request): 
     auth.logout(request)
