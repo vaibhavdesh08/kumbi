@@ -76,6 +76,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wed.wsgi.application'
 
+# this is add for crete custom user model to understand by django
+AUTH_USER_MODEL = 'wedd.CustomUser'
+
+
+#Agar aap email se login karna chahte hain, toh aapko authentication backend bhi set karna hoga. Iske liye, AUTHENTICATION_BACKENDS ko update karein
+AUTHENTICATION_BACKENDS = [
+    'wedd.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

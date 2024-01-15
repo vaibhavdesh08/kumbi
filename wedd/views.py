@@ -35,12 +35,18 @@ def register(request):
 
 def login(request):
     if request.method=="POST":
+        # username=request.POST.get('username')
         email=request.POST.get('email')
-        pass1=request.POST.get('pass')
-        user=authenticate(request,email=email,password=pass1)
-        if user is not None:
-            login(request,user)
+        pass1=request.POST.get('password')
+        # print(username,pass1)
+        User=authenticate(request,email=email,password=pass1)
+        if User is not None:
+            # login(request,User)
             return redirect('profile')
+        else:
+            messages.info(request, 'invalid email or password')
+
+    return render(request,'login.html')
 
 # def register(request):
 #     if request.method == 'POST':
