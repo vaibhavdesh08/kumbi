@@ -13,40 +13,85 @@ from django.template import loader
 from django.urls import reverse
 from .forms import kumbiForm
 # Create your views here.
+# views.py
+
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.shortcuts import render
+from acc.models import CustomUser
+
+def register(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        fullname = request.POST.get('fullname')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if password == confirm_password:
+            user = CustomUser.objects.create_user(email=email, fullname=fullname, password=password)
+            login(request, user)
+            messages.success(request, 'Registration successful!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Passwords do not match.')
+    return render(request, 'register.html')
+
+def user_login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Login successful!')
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid email or password.')
+
+    return render(request, 'login.html')
+
+
+
+
+
+
 
 def home(request):
     return render(request,'home.html')
 
-def register(request):
-    if request.method=='POST':
-        username=request.POST.get('username')
-        email=request.POST.get('email')
-        pass1=request.POST.get('password1')
-        pass2=request.POST.get('password2')
+# def register(request):
+#     if request.method=='POST':
+#         username=request.POST.get('username')
+#         email=request.POST.get('email')
+#         pass1=request.POST.get('password1')
+#         pass2=request.POST.get('password2')
 
-        if pass1!=pass2:
-            messages.error(request, 'Your Password and Confirm Password Not Same..!')
-            # return HttpResponse("Your Password and Confirm Password Not Same..!")
-        else:
-            my_user=User.objects.create_user(username,email,pass1)
-            my_user.save()
-            return redirect('login')
-    return render(request,'register.html')
+#         if pass1!=pass2:
+#             messages.error(request, 'Your Password and Confirm Password Not Same..!')
+#             # return HttpResponse("Your Password and Confirm Password Not Same..!")
+#         else:
+#             my_user=User.objects.create_user(username,email,pass1)
+#             my_user.save()
+#             return redirect('login')
+#     return render(request,'register.html')
 
-def login(request):
-    if request.method=="POST":
-        # username=request.POST.get('username')
-        email=request.POST.get('email')
-        pass1=request.POST.get('password')
-        # print(username,pass1)
-        User=authenticate(request,email=email,password=pass1)
-        if User is not None:
-            # login(request,User)
-            return redirect('profile')
-        else:
-            messages.info(request, 'invalid email or password')
+# def login(request):
+#     if request.method=="POST":
+#         username=request.POST.get('username')
+#         # email=request.POST.get('email')
+#         pass1=request.POST.get('password')
+#         # print(username,pass1)
+#         User=authenticate(request,username=username,password=pass1)
+#         if User is not None:
+#             # login(request,User)
+#             return redirect('profile')
+#         else:
+#             messages.info(request, 'invalid email or password')
 
-    return render(request,'login.html')
+#     return render(request,'login.html')
 
 # def register(request):
 #     if request.method == 'POST':
@@ -122,7 +167,7 @@ def logout(request):
     #     # ...
 
     # return render(request, 'register.html')
-
+@login_required(login_url='login')
 def profile(request):
     return render(request,'profile.html')
 # def profile(request):

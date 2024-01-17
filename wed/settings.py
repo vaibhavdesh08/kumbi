@@ -31,6 +31,9 @@ if DEBUG:
 
 ALLOWED_HOSTS = ['*']
 
+# settings.py
+
+AUTH_USER_MODEL = 'acc.CustomUser'
 
 # Application definition
 
@@ -43,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+
+    'acc',
 ]
 
 MIDDLEWARE = [
@@ -77,14 +82,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'wed.wsgi.application'
 
 # this is add for crete custom user model to understand by django
-AUTH_USER_MODEL = 'wedd.CustomUser'
+# AUTH_USER_MODEL = 'wedd.CustomUser'
 
 
-#Agar aap email se login karna chahte hain, toh aapko authentication backend bhi set karna hoga. Iske liye, AUTHENTICATION_BACKENDS ko update karein
-AUTHENTICATION_BACKENDS = [
-    'wedd.backends.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
+# #Agar aap email se login karna chahte hain, toh aapko authentication backend bhi set karna hoga. Iske liye, AUTHENTICATION_BACKENDS ko update karein
+# AUTHENTICATION_BACKENDS = [
+#     'wedd.backends.EmailBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 
 
 # Database
@@ -129,7 +134,7 @@ AUTHENTICATION_BACKENDS = [
 import dj_database_url
 
 DATABASES = {
-    'default' : dj_database_url.parse('postgres://kumbi:slV0Wxsr0NDZ7NaNkvCoS9BPFUC0XLYx@dpg-cmgj7egl5elc73fugn6g-a.singapore-postgres.render.com/kumbi')
+    'default' : dj_database_url.parse('postgres://kumbi:BX9qqnYaelu2D63AILxf44zj8RGldZDG@dpg-cmj2g2nqd2ns7386sb20-a.singapore-postgres.render.com/kumbi_7mcd')
  
 }
 
