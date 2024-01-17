@@ -37,7 +37,7 @@ def register(request):
             messages.error(request, 'Passwords do not match.')
     return render(request, 'register.html')
 
-def user_login(request):
+def login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -45,18 +45,22 @@ def user_login(request):
         user = authenticate(request, email=email, password=password)
 
         if user is not None:
-            login(request, user)
-            messages.success(request, 'Login successful!')
-            return redirect('home')
+            # login(request, user)
+            # messages.success(request, 'Login successful!')
+            return redirect('profile')
         else:
             messages.error(request, 'Invalid email or password.')
 
     return render(request, 'login.html')
 
+def logout(request): 
+    auth.logout(request)
+    return redirect('login')
 
 
-
-
+@login_required
+def profile(request):
+    return render(request,'profile.html')
 
 
 def home(request):
@@ -133,9 +137,6 @@ def home(request):
 #         return render(request, 'login.html')
 
 
-def logout(request): 
-    auth.logout(request)
-    return redirect('login')
 
 # @login_required(login_url='login')
 # def profile(request):
@@ -167,9 +168,7 @@ def logout(request):
     #     # ...
 
     # return render(request, 'register.html')
-@login_required(login_url='login')
-def profile(request):
-    return render(request,'profile.html')
+
 # def profile(request):
 #     user = request.user
 
@@ -226,6 +225,4 @@ def profile(request):
 #     else:
 #         return render(request, 'login.html')
 
-def logout(request): 
-    auth.logout(request)
-    return redirect('login')
+
