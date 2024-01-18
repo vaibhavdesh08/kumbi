@@ -29,7 +29,7 @@ DEBUG = True
 if DEBUG:
     EMAIL_BACKEND ='django.core.mail.backends.console.EmailBackend'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','https://automatic-space-waffle-v9w5vgqpp4jhpv7p-8000.app.github.dev']
 
 # settings.py
 
@@ -99,6 +99,7 @@ DEFAULT_FROM_EMAIL = 'wandekarkunbi@gmail.comm'  # The email address that will b
 #     'django.contrib.auth.backends.ModelBackend',
 # ]
 
+SITE_URL = 'https://automatic-space-waffle-v9w5vgqpp4jhpv7p-8000.app.github.dev'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -184,6 +185,9 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+
 
 # STATIC_URL = 'static/'
 
