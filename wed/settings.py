@@ -82,8 +82,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wed.wsgi.application'
 
-# this is add for crete custom user model to understand by django
-# AUTH_USER_MODEL = 'wedd.CustomUser'
+# Email settings for Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'wandekarkunbi@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'fwxn vfnd peze ussr'  # Your Gmail password
+DEFAULT_FROM_EMAIL = 'wandekarkunbi@gmail.comm'  # The email address that will be used as the 'from' address for messages sent by Django
+
 
 
 # #Agar aap email se login karna chahte hain, toh aapko authentication backend bhi set karna hoga. Iske liye, AUTHENTICATION_BACKENDS ko update karein
