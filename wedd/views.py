@@ -30,9 +30,9 @@ def register(request):
 
         if password == confirm_password:
             user = CustomUser.objects.create_user(email=email, fullname=fullname, password=password)
-            login(request, user)
-            messages.success(request, 'Registration successful!')
-            return redirect('home')
+            # login(request, user)
+            # messages.success(request, 'Registration successful!')
+            return redirect('login')
         else:
             messages.error(request, 'Passwords do not match.')
     return render(request, 'register.html')
@@ -49,7 +49,7 @@ def login(request):
             # messages.success(request, 'Login successful!')
             return redirect('profile')
         else:
-            messages.error(request, 'Invalid email or password.')
+            messages.info(request, 'Invalid email or password.')
 
     return render(request, 'login.html')
 
@@ -58,7 +58,7 @@ def logout(request):
     return redirect('login')
 
 
-@login_required
+@login_required(login_url='login')
 def profile(request):
     return render(request,'profile.html')
 

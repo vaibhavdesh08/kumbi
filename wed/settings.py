@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'acc.CustomUser'
 
+LOGIN_URL = 'login'
 # Application definition
 
 INSTALLED_APPS = [
