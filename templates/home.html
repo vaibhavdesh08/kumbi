@@ -9,17 +9,42 @@
     <!-- Link to Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Link to custom CSS (style.css) -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    {% load static %} 
-<link rel="stylesheet" href="{% static '../static/css/style.css' %}">
+    
       <!-- Link add -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <style>
+        .image-slider-container {
+            overflow: hidden;
+        }
+
+        .image-slider {
+            display: flex;
+            animation: slideLeft 10s linear infinite;
+        }
+
+        .image-slider img {
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+
 </head>
 <body>
-    {% include 'navbar.html' %}
+    
     <!-- Navigation Bar -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Matrimony Site</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -40,11 +65,11 @@
                 </li>
             </ul>
         </div>
-    </nav> -->
+    </nav>
 
-    <div class="container center">
+    <!-- <div class="container center">
 	    <div class="row">
-	        <div class="col-md-12">
+	        <div class="col-md-12"> -->
 	            <!-- <h2>
 	                <span class="fa-stack fa-lg">
 	                   <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
@@ -54,7 +79,7 @@
 	                 <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
 	                <a href="https://www.linkedin.com/checkpoint/rm/sign-in-another-account?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"><i class="fa fa-linkedin-square fa-stack-1x" aria-hidden="true"></i></a>
 	                </span> -->
-	            </h2>
+	            <!-- </h2>
 	            <p>Waiting is not easy but just try it this time</p>
 	            <button class="btn btn-success btn-lg">
 	            {% comment %} <i class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></i> {% endcomment %}
@@ -62,13 +87,46 @@
 	            <br>Resister</button>
 	        </div>
 	    </div>
-	</div>    
+	</div>     -->
+<section style="background-image: url('../static/images/pexels-d-m-12951710.jpg')" id="about" class="py-5 text-center">
+    <div style="color: white" class="container">
+        <p>Waiting is not easy but just try it this time</p>
+	            <button class="btn btn-success btn-lg">
+	            {% comment %} <i class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></i> {% endcomment %}
+              <a href="register"><i class="fa fa-spinner fa-spin fa-2x fa-fw" aria-hidden="true"></i></a>
+	            <br>Resister</button>
+        </div>
+</section>
 
-<!-- Background image -->
-<div
-   class="bg-image"
-  
-</div> 
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="image-slider-container">
+                    <div class="image-slider">
+                        <!-- Add your images here -->
+                        <img src="../static/images/love-2587456_1920.jpg" alt="Image 1">
+                        <img src="../static/images/love-2587456_1920.jpg" alt="Image 2">
+                        <img src="../static/images/love-2587456_1920.jpg" alt="Image 3">
+                        <!-- Add more images as needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="image-slider-container">
+                    <div class="image-slider">
+                        <!-- Add your images here -->
+                        <img src="../static/images/love-2587456_1920.jpg" alt="Image 4">
+                        <img src="../static/images/love-2587456_1920.jpg" alt="Image 5">
+                        <img src="../static/images/love-2587456_1920.jpg" alt="Image 6">
+                        <!-- Add more images as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div><p></p></div>
 <!-- no-repeat center center fixed -->
 <!-- Background image -->
 

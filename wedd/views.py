@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required 
-from .models import kumbi
+# from .models import kumbi
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.template import loader
 from django.views.generic import  ListView
 from django.template import loader
 from django.urls import reverse
-from .forms import kumbiForm
+# from .forms import kumbiForm
 # Create your views here.
 # views.py
 
@@ -77,6 +77,23 @@ def profile(request):
 
 def home(request):
     return render(request,'home.html')
+
+# views.py
+
+# from django.shortcuts import render, redirect
+from .forms import MatrimonialProfileForm
+
+def create_profile(request):
+    if request.method == 'POST':
+        form = MatrimonialProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('profile_created')  # Redirect to a success page
+    else:
+        form = MatrimonialProfileForm()
+
+    return render(request, 'create_profile.html', {'form': form})
+
 
 
 
