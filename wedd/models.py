@@ -33,11 +33,14 @@ class MatrimonialProfile(models.Model):
     gender = models.CharField(max_length=10, choices=[('male', 'Male'), ('female', 'Female')])
     height = models.PositiveIntegerField()
     date_of_birth = models.DateField()
+    birth_time = models.TimeField()
+    birth_place = models.CharField(max_length=100)
     marital_status = models.CharField(max_length=20, choices=[('single', 'Single'), ('married', 'Married')])
     caste = models.CharField(max_length=50, default='Wandekar Kunbi')
     country_living = models.CharField(max_length=50)
     state_living = models.CharField(max_length=50)
     city_living = models.CharField(max_length=50)
+    permanent_address = models.TextField()
 
     # Section 3: About Me
     bio = models.TextField()
@@ -70,6 +73,8 @@ class MatrimonialProfile(models.Model):
     family_income = models.PositiveIntegerField()
     living_with_parents = models.BooleanField(default=False)
     family_based_city = models.CharField(max_length=50)
+    maternal_uncles_name = models.CharField(max_length=100)
+    
 
     # Section 7: Contact Details
     email_id = models.EmailField()
@@ -77,6 +82,12 @@ class MatrimonialProfile(models.Model):
 
     # Section 8: Lifestyle
     lifestyle = models.TextField()
+    drinking_habits = models.BooleanField(default=False)
+    smoking_habits = models.BooleanField(default=False)
+
+    # section 9 : Document upload
+    document = models.FileField(upload_to='uploads/', null=True, blank=True)
+
 
     def __str__(self):
         return self.name

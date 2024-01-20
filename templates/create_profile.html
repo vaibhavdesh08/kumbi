@@ -1,56 +1,251 @@
-<!-- create_profile.html -->
-
 <!DOCTYPE html>
+{% load static %}
+{% csrf_token %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Matrimonial Profile</title>
-    <!-- Bootstrap CSS link (use the latest version) -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Matrimony Registration</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-image: url(../static/images/pexels-d-m-12951710.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    .registration-form {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
+  {% include 'navbar.html' %}
+  {% include 'messages.html' %}
+  {% csrf_token %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 registration-form">
+        <h2 class="text-center mb-4">Wandekar Kumbi Matrimonial Profile</h2>
+        <form method="post" enctype="multipart/form-data" action="{% url 'create_profile' %}">
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+          <div class="form-group">
+            <label for="profilePics">Upload Profile Pics</label>
+            <input type="file" class="form-control-file" id="profilePics" name="profilePics">
+          </div>
+          <h5 class="section-title">Basic Details</h5>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+          </div>
+          <div class="form-group">
+            <label for="height">Height (in cm)</label>
+            <input type="number" class="form-control" id="height" placeholder="Enter height" required>
+        </div>
 
-<div class="container mt-5">
-    <h2>Create Matrimonial Profile</h2>
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        <!-- Section 1: Profile Pics -->
         <div class="form-group">
-            <label for="id_profile_pics">Profile Pics</label>
-            {{ form.profile_pics }}
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" class="form-control" id="dateOfBirth" required>
         </div>
 
-        <!-- Section 2: Basic Details -->
-        <div class="card my-3">
-            <div class="card-header">2. Basic Details</div>
-            <div class="card-body">
-                <!-- Add form fields for basic details -->
-                {{ form.name }}
-                {{ form.gender }}
-                {{ form.height }}
-                {{ form.date_of_birth }}
-                {{ form.marital_status }}
-                {{ form.caste }}
-                {{ form.country_living }}
-                {{ form.state_living }}
-                {{ form.city_living }}
-            </div>
+        <div class="form-group">
+            <label for="birthTime">Birth Time</label>
+            <input type="time" class="form-control" id="birthTime" required>
         </div>
 
-        <!-- ... Repeat similar structure for other sections ... -->
+        <div class="form-group">
+            <label for="birthPlace">Birth Place</label>
+            <input type="text" class="form-control" id="birthPlace" placeholder="Enter birth place" required>
+        </div>
+        <div class="form-group">
+            <label for="permanentAddress">Permanent Address</label>
+            <textarea class="form-control" id="permanentAddress" rows="3" placeholder="Enter permanent address" required></textarea>
+        </div>
+        <h5 class="section-title">About Me</h5>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea class="form-control" id="bio" rows="5" placeholder="Enter bio" required></textarea>
+      </div>
 
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary">Create Profile</button>
-    </form>
+      <div class="form-group">
+          <label for="profileCreatedBy">Profile Created By</label>
+          <input type="text" class="form-control" id="profileCreatedBy" placeholder="Enter profile created by" required>
+      </div>
+
+      <div class="form-group">
+          <label for="languagesSpoken">Languages Spoken</label>
+          <input type="text" class="form-control" id="languagesSpoken" placeholder="Enter languages spoken" required>
+      </div>
+
+      <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="disability">
+          <label class="form-check-label" for="disability">Has Disability</label>
+      </div>
+      <h5 class="section-title">Education</h5>
+      <div class="form-group">
+        <label for="aboutEducation">About Education</label>
+        <textarea class="form-control" id="aboutEducation" rows="5" placeholder="Enter information about education" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="highestEducation">Highest Education</label>
+        <input type="text" class="form-control" id="highestEducation" placeholder="Enter highest education" required>
+    </div>
+
+    <div class="form-group">
+        <label for="pgDegree">Postgraduate Degree</label>
+        <input type="text" class="form-control" id="pgDegree" placeholder="Enter postgraduate degree">
+    </div>
+
+    <div class="form-group">
+        <label for="pgCollege">Postgraduate College</label>
+        <input type="text" class="form-control" id="pgCollege" placeholder="Enter postgraduate college">
+    </div>
+
+    <div class="form-group">
+        <label for="ugDegree">Undergraduate Degree</label>
+        <input type="text" class="form-control" id="ugDegree" placeholder="Enter undergraduate degree">
+    </div>
+
+    <div class="form-group">
+        <label for="ugCollege">Undergraduate College</label>
+        <input type="text" class="form-control" id="ugCollege" placeholder="Enter undergraduate college">
+    </div>
+
+    <div class="form-group">
+        <label for="schoolName">School Name</label>
+        <input type="text" class="form-control" id="schoolName" placeholder="Enter school name">
+    </div>
+    <h5 class="section-title">Career</h5>
+    <div class="form-group">
+      <label for="aboutCareer">About Career</label>
+      <textarea class="form-control" id="aboutCareer" rows="5" placeholder="Enter information about career" required></textarea>
+  </div>
+
+  <div class="form-group">
+      <label for="employedIn">Employed In</label>
+      <input type="text" class="form-control" id="employedIn" placeholder="Enter employed in" required>
+  </div>
+
+  <div class="form-group">
+      <label for="occupation">Occupation</label>
+      <input type="text" class="form-control" id="occupation" placeholder="Enter occupation" required>
+  </div>
+
+  <div class="form-group">
+      <label for="organizationName">Organization Name</label>
+      <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name" required>
+  </div>
+  <h5 class="section-title">Family</h5>
+  <div class="form-group">
+    <label for="aboutFamily">About Family</label>
+    <textarea class="form-control" id="aboutFamily" rows="5" placeholder="Enter information about family" required></textarea>
 </div>
 
-<!-- Bootstrap JS and Popper.js (use the latest versions) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<div class="form-group">
+    <label for="fatherOccupation">Father's Occupation</label>
+    <input type="text" class="form-control" id="fatherOccupation" placeholder="Enter father's occupation" required>
+</div>
 
+<div class="form-group">
+    <label for="motherOccupation">Mother's Occupation</label>
+    <input type="text" class="form-control" id="motherOccupation" placeholder="Enter mother's occupation" required>
+</div>
+
+<div class="form-group">
+    <label for="brothers">Number of Brothers</label>
+    <input type="number" class="form-control" id="brothers" required>
+</div>
+
+<div class="form-group">
+    <label for="sisters">Number of Sisters</label>
+    <input type="number" class="form-control" id="sisters" required>
+</div>
+
+<div class="form-group">
+    <label for="marriedSisters">Number of Married Sisters</label>
+    <input type="number" class="form-control" id="marriedSisters" required>
+</div>
+
+<div class="form-group">
+    <label for="familyIncome">Family Income</label>
+    <input type="number" class="form-control" id="familyIncome" placeholder="Enter family income" required>
+</div>
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="livingWithParents">
+    <label class="form-check-label" for="livingWithParents">Living with Parents</label>
+</div>
+
+<div class="form-group">
+    <label for="familyBasedCity">Family Based City</label>
+    <input type="text" class="form-control" id="familyBasedCity" placeholder="Enter family-based city" required>
+</div>
+
+<div class="form-group">
+    <label for="maternalUnclesName">Maternal Uncle's Name</label>
+    <input type="text" class="form-control" id="maternalUnclesName" placeholder="Enter maternal uncle's name" required>
+</div>
+<h5 class="section-title">Contact Details</h5>
+<div class="form-group">
+  <label for="emailId">Email ID</label>
+  <input type="email" class="form-control" id="emailId" placeholder="Enter email ID" required>
+</div>
+
+<div class="form-group">
+  <label for="phoneNo">Phone Number</label>
+  <input type="tel" class="form-control" id="phoneNo" placeholder="Enter phone number" required>
+</div>
+<h5 class="section-title">Lifestyle</h5>
+<div class="form-group">
+  <label for="lifestyle">Lifestyle</label>
+  <textarea class="form-control" id="lifestyle" rows="5" placeholder="Enter information about lifestyle" required></textarea>
+</div>
+
+<div class="form-check">
+  <input type="checkbox" class="form-check-input" id="drinkingHabits">
+  <label class="form-check-label" for="drinkingHabits">Drinking Habits</label>
+</div>
+
+<div class="form-check">
+  <input type="checkbox" class="form-check-input" id="smokingHabits">
+  <label class="form-check-label" for="smokingHabits">Smoking Habits</label>
+</div>
+<div class="form-group">
+  <label for="document">Upload Document (Word/PDF)</label>
+  <input type="file" class="form-control-file" id="document" name="document">
+</div>
+
+
+
+  
+
+
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+{% include 'footer.html' %}
 </html>

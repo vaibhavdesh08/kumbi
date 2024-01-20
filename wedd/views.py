@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate,login
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required 
 # from .models import kumbi
+from .models import MatrimonialProfile
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.template import loader
