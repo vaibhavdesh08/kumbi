@@ -65,15 +65,15 @@ class MatrimonialProfile(models.Model):
 
     # Section 6: Family
     about_family = models.TextField(null=True, blank=True)
-    father_occupation = models.CharField(max_length=100)
-    mother_occupation = models.CharField(max_length=100)
+    father_occupation = models.CharField(max_length=100,null=False, blank=False)
+    mother_occupation = models.CharField(max_length=100,null=False, blank=False)
     brothers = models.PositiveIntegerField()
     sisters = models.PositiveIntegerField()
     married_sisters = models.PositiveIntegerField()
     # family_income = models.PositiveIntegerField(null=True, blank=True)
     living_with_parents = models.BooleanField(default=False)
-    family_based_city = models.CharField(max_length=50)
-    maternal_uncles_name = models.CharField(max_length=100)
+    family_based_city = models.CharField(max_length=50,null=False, blank=False)
+    maternal_uncles_name = models.CharField(max_length=100,null=False, blank=False)
     
 
     # Section 7: Contact Details
@@ -86,7 +86,7 @@ class MatrimonialProfile(models.Model):
     smoking_habits = models.BooleanField(default=False)
 
     # section 9 : Document upload
-    document = models.FileField(upload_to='uploads/', null=True, blank=True)
+    biodata = models.FileField(upload_to='uploads/', null=True, blank=True)
 
 
     def __str__(self):

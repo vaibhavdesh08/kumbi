@@ -86,7 +86,7 @@ from .forms import MatrimonialProfileForm
 
 def create_profile(request):
     if request.method == 'POST':
-        form = MatrimonialProfileForm(request.POST, request.FILES)
+        form = MatrimonialProfileForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('profile')  # Redirect to a success page
