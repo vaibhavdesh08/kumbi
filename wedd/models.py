@@ -31,7 +31,7 @@ class MatrimonialProfile(models.Model):
     # Section 2: Basic Details
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, choices=[('male', 'Male'), ('female', 'Female')])
-    height = models.PositiveIntegerField()
+    height = models.FloatField() 
     date_of_birth = models.DateField()
     birth_time = models.TimeField()
     birth_place = models.CharField(max_length=100)
@@ -43,34 +43,34 @@ class MatrimonialProfile(models.Model):
     permanent_address = models.TextField()
 
     # Section 3: About Me
-    bio = models.TextField()
+    bio = models.TextField(null=True, blank=True)
     profile_created_by = models.CharField(max_length=50)
     languages_spoken = models.CharField(max_length=100)
     disability = models.BooleanField(default=False)
 
     # Section 4: Education
-    about_education = models.TextField()
-    highest_education = models.CharField(max_length=100)
-    pg_degree = models.CharField(max_length=100)
-    pg_college = models.CharField(max_length=100)
-    ug_degree = models.CharField(max_length=100)
-    ug_college = models.CharField(max_length=100)
-    school_name = models.CharField(max_length=100)
+    about_education = models.TextField(null=True, blank=True)
+    highest_education = models.CharField(max_length=100,null=True, blank=True)
+    pg_degree = models.CharField(max_length=100,null=True, blank=True)
+    pg_college = models.CharField(max_length=100,null=True, blank=True)
+    ug_degree = models.CharField(max_length=100,null=True, blank=True)
+    ug_college = models.CharField(max_length=100,null=True, blank=True)
+    school_name = models.CharField(max_length=100,null=True, blank=True)
 
     # Section 5: Career
-    about_career = models.TextField()
-    employed_in = models.CharField(max_length=100)
-    occupation = models.CharField(max_length=100)
-    organization_name = models.CharField(max_length=100)
+    about_career = models.TextField(null=True, blank=True)
+    employed_in = models.CharField(max_length=100,null=True, blank=True)
+    occupation = models.CharField(max_length=100,null=True, blank=True)
+    organization_name = models.CharField(max_length=100,null=True, blank=True)
 
     # Section 6: Family
-    about_family = models.TextField()
+    about_family = models.TextField(null=True, blank=True)
     father_occupation = models.CharField(max_length=100)
     mother_occupation = models.CharField(max_length=100)
     brothers = models.PositiveIntegerField()
     sisters = models.PositiveIntegerField()
     married_sisters = models.PositiveIntegerField()
-    family_income = models.PositiveIntegerField()
+    # family_income = models.PositiveIntegerField(null=True, blank=True)
     living_with_parents = models.BooleanField(default=False)
     family_based_city = models.CharField(max_length=50)
     maternal_uncles_name = models.CharField(max_length=100)
@@ -81,7 +81,7 @@ class MatrimonialProfile(models.Model):
     phone_no = models.CharField(max_length=15)
 
     # Section 8: Lifestyle
-    lifestyle = models.TextField()
+    lifestyle = models.TextField(null=True, blank=True)
     drinking_habits = models.BooleanField(default=False)
     smoking_habits = models.BooleanField(default=False)
 

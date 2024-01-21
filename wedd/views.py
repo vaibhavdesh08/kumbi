@@ -89,7 +89,7 @@ def create_profile(request):
         form = MatrimonialProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('profile_created')  # Redirect to a success page
+            return redirect('profile')  # Redirect to a success page
     else:
         form = MatrimonialProfileForm()
 
